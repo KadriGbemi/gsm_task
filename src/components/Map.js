@@ -8,7 +8,7 @@ const containerStyle = {
   boder: "2px solid pink",
 };
 
-function Map({ address }) {
+function Map({ address, tasks }) {
   const [point, setPoint] = useState({ lat: 59.440263, lng: 24.730345 });
   useEffect(() => {
     if (address && address.coordinates && address.coordinates.length) {
@@ -23,6 +23,26 @@ function Map({ address }) {
     <LoadScript googleMapsApiKey="AIzaSyA8gA7OUb996h1q7XN3SFXT9LVY-uHC4EU">
       <GoogleMap mapContainerStyle={containerStyle} center={point} zoom={15}>
         <Marker position={point} />
+        {tasks &&
+          tasks.length &&
+          tasks.map((task) => {
+            const [long, latitude] =
+              task &&
+              task.address &&
+              task.address.location &&
+              task.address.coordinates;
+            return (
+              task &&
+              task.address && (
+                <Marker
+                  position={{
+                    lat: latitude,
+                    lng: long,
+                  }}
+                />
+              )
+            );
+          })}
       </GoogleMap>
     </LoadScript>
   );
