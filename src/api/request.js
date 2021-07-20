@@ -27,23 +27,29 @@ const requestData = async (url, method, address) => {
   );
   return response;
 };
-export const handleCreateTask = async (address, setLocation) => {
+export const handleCreateTask = async (address, setAddress, setLoading) => {
   const response = await requestData(
     "https://gsmtasks.com/api/tasks/tasks/",
     "POST",
     address
   );
-  if (response.ok) {
-    let data = await response.json();
-    if (data && data.url) {
-      const timer = setTimeout(async () => {
-        const location = await requestData(data.url, "GET");
-        if (response.ok) {
-          let locationData = await location.json();
-          locationData && setLocation(locationData.address);
-          clearInterval(timer);
-        }
-      }, "3000");
+  try {
+    if (response.ok) {
+      let data = await response.json();
+      if (data && data.url) {
+        const timer = setTimeout(async () => {
+          const location = await requestData(data.url, "GET");
+          if (response.ok) {
+            let locationData = await location.json();
+            locationData &&
+              setAddress(locationData.address && locationData.address.location);
+            clearInterval(timer);
+          }
+          setLoading(false);
+        }, "3000");
+      }
     }
+  } catch (err) {
+    console.log(err);
   }
 };

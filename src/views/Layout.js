@@ -7,16 +7,16 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 
 function Layout() {
-  const [location, setLocation] = useState({});
+  const [address, setAddress] = useState({});
   return (
     <Container>
       <Row>
         <Col sm={12} md={8}>
           {" "}
-          <Map location={location}/>
+          <Map address={address}/>
         </Col>
         <Col sm={12} md={4}>
-          <Form setLocation={setLocation}/>
+          <Form setAddress={setAddress}/>
         </Col>
       </Row>
     </Container>
