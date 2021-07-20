@@ -30,11 +30,12 @@ function Map({ address, tasks }) {
               task &&
               task.address &&
               task.address.location &&
-              task.address.coordinates;
+              task.address.location.coordinates;
             return (
               task &&
               task.address && (
                 <Marker
+                  key={task.id}
                   position={{
                     lat: latitude,
                     lng: long,

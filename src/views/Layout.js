@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import useInterval from "../utils";
 import { getTaskLists } from "../api/request";
 
 import Form from "../components/Form";
@@ -10,13 +11,12 @@ import Col from "react-bootstrap/Col";
 function Layout() {
   const [address, setAddress] = useState({});
   const [tasks, setTasks] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
-      const response = await getTaskLists();
-      setTasks(response);
-    }
-    setInterval(() => fetchData(), 7000);
-  }, [tasks]);
+  async function fetchData() {
+    const response = await getTaskLists();
+    setTasks(response);
+  }
+  useInterval(() => fetchData(), 5000);
+
   return (
     <Container>
       <Row>
