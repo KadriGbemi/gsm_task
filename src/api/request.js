@@ -27,7 +27,7 @@ const requestData = async (url, method, address) => {
   );
   return response;
 };
-export const handleCreateTask = async (address) => {
+export const handleCreateTask = async (address, setLocation) => {
   const response = await requestData(
     "https://gsmtasks.com/api/tasks/tasks/",
     "POST",
@@ -38,10 +38,9 @@ export const handleCreateTask = async (address) => {
     if (data && data.url) {
       const timer = setTimeout(async () => {
         const location = await requestData(data.url, "GET");
-        console.log("First data", data);
         if (response.ok) {
           let locationData = await location.json();
-          console.log("Sec data 1", locationData.address);
+          locationData && setLocation(locationData.address);
           clearInterval(timer);
         }
       }, "3000");

@@ -2,12 +2,12 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { handleCreateTask } from "../api/request";
 
-const handleSubmit = (e, setLocation) => {
+const handleSubmit = async (e, setLocation) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const address = formData.get("address");
   if (address) {
-    handleCreateTask(address);
+   await handleCreateTask(address, setLocation);
   }
 };
 function MapForm({ setLocation }) {
