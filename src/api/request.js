@@ -53,3 +53,12 @@ export const handleCreateTask = async (address, setAddress, setLoading) => {
     console.log(err);
   }
 };
+
+export const getTaskLists = async () => {
+  const response = await requestData(
+    "https://gsmtasks.com/api/tasks/tasks/?account=cb57aa97-e4e3-430b-84b4-a93d0b8bdf7a",
+    "GET"
+  );
+  const data = await response.json()
+  return data
+};

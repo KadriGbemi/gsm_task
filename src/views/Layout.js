@@ -6,9 +6,10 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 
-function Layout() {
+function Layout({taskLists}) {
   const [address, setAddress] = useState({});
   return (
+    console.log("Task list", taskLists),
     <Container>
       <Row>
         <Col sm={12} md={8}>
