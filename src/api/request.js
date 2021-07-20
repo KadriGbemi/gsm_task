@@ -36,12 +36,15 @@ export const handleCreateTask = async (address) => {
   if (response.ok) {
     let data = await response.json();
     if (data && data.url) {
-      const location = await requestData(data.url, "GET");
-      console.log("Response location", location.url);
-      if (response.ok) {
-        let locationData = await location.json();
-        console.log("Response location data", locationData);
-      }
+      const timer = setTimeout(async () => {
+        const location = await requestData(data.url, "GET");
+        console.log("First data", data);
+        if (response.ok) {
+          let locationData = await location.json();
+          console.log("Sec data 1", locationData.address);
+          clearInterval(timer);
+        }
+      }, "3000");
     }
   }
 };

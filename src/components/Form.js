@@ -6,7 +6,6 @@ const handleSubmit = (e, setLocation) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const address = formData.get("address");
-  console.log("Address is submitted", address);
   if (address) {
     handleCreateTask(address);
   }
