@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { handleCreateTask } from "../api/request";
 
-const handleSubmit = (e) => {
+const handleSubmit = (e, setLocation) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const address = formData.get("address");
@@ -11,9 +11,9 @@ const handleSubmit = (e) => {
     handleCreateTask(address);
   }
 };
-function MapForm() {
+function MapForm({ setLocation }) {
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={(e) => handleSubmit(e, setLocation)}>
       <Form.Group className="mb-3" controlId="formAddress">
         <Form.Label>Address</Form.Label>
         <Form.Control type="text" placeholder="Enter address" name="address" />

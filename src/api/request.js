@@ -37,10 +37,10 @@ export const handleCreateTask = async (address) => {
     let data = await response.json();
     if (data && data.url) {
       const location = await requestData(data.url, "GET");
-
+      console.log("Response location", location.url);
       if (response.ok) {
         let locationData = await location.json();
-        console.log("Response location", locationData);
+        console.log("Response location data", locationData);
       }
     }
   }
