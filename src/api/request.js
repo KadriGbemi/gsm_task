@@ -1,7 +1,7 @@
 const requestData = async (url, method, address) => {
   const data = {
     account:
-      "https://gsmtasks.com/api/tasks/accounts/cb57aa97-e4e3-430b-84b4-a93d0b8bdf7a/",
+      "https://gsmtasks.com/api/tasks/accounts/c389e543-c394-49dc-ba06-38b3677b939a/",
     address: {
       raw_address: address,
     },
@@ -13,7 +13,7 @@ const requestData = async (url, method, address) => {
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Token c8bd28ffc939c3107838301fff3cc81269434722",
+      Authorization: "Token 20689cbaa522e0ba4d7ef97e1db2121623d0c47d",
     },
   };
   const response = await fetch(
@@ -56,7 +56,7 @@ export const handleCreateTask = async (address, setAddress, setLoading) => {
 
 export const getTaskLists = async () => {
   const response = await requestData(
-    "https://gsmtasks.com/api/tasks/tasks/?account=cb57aa97-e4e3-430b-84b4-a93d0b8bdf7a",
+    "https://gsmtasks.com/api/tasks/tasks/?account=c389e543-c394-49dc-ba06-38b3677b939a",
     "GET"
   );
   const data = await response.json()
